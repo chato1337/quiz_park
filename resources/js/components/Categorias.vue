@@ -9,6 +9,11 @@
               </div>
             </div>
         </div>
+        <div class="row">
+          <div class="col">
+              {{arrayCategoria}}
+          </div>
+        </div>
     </div>
 </template>
 
@@ -17,10 +22,20 @@
     export default {
         data() {
           return {
-            categoria: ""
+            categoria: "",
+            arrayCategoria: []
           }
         },
         methods: {
+          listarCategorias(){
+            let me = this;
+            axios.get('listar_categoria').then(function(response){
+              var respuesta = response;
+              me.arrayCategoria = respuesta;
+            }).catch(function(error){
+              console.log(error);
+            });
+          },
           crearCategoria(){
             let me = this;
             axios.post('crear_categoria', {
@@ -47,7 +62,8 @@
           }
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
+            this.listarCategorias();
         }
     }
 </script>

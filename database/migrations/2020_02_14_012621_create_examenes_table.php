@@ -16,10 +16,12 @@ class CreateExamenesTable extends Migration
         Schema::create('examenes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('categoria_id')->unsigned();
+            $table->bigInteger('users_id')->unsigned();
             $table->string('nombre_examen');
             $table->timestamps();
 
             $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 

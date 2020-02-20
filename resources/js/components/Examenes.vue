@@ -14,7 +14,7 @@
                 </select>
                 <b-button variant="warning" v-b-modal.modal-1>Nueva categoria</b-button>
 
-                <b-modal id="modal-1" title="BootstrapVue">
+                <b-modal id="modal-1" title="Categorias">
                     <categorias></categorias>
                 </b-modal>
                 <button @click="crearExamen()" class="btn btn-primary">Nuevo Examen</button>

@@ -16,10 +16,12 @@ class CreateCalificacionesTable extends Migration
         Schema::create('calificaciones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('examenes_id')->unsigned();
             $table->string('calificacion');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('examenes_id')->references('id')->on('examenes');
         });
     }
 
