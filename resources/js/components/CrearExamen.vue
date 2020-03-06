@@ -35,7 +35,7 @@
                     <td v-text="examen.id"></td>
                     <td v-text="examen.nombre_examen"></td>
                     <td v-text="examen.nombre_categoria"></td>
-                    <td>1</td>
+                    <td v-text="examen.name"></td>
                     <td><a class="btn btn-info" :href="'examen?numero='+examen.id">Agregar prguntas</a></td>
                 </tr>
             </tbody>

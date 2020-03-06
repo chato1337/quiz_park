@@ -2509,11 +2509,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['examen'],
   data: function data() {
     return {
+      respuesta_usuario: '',
       categorias: {},
       pregunta: '',
       respuesta_a: '',
@@ -2563,6 +2577,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    guardarPregunta: function guardarPregunta() {},
     resetear: function resetear() {
       this.pregunta = "";
       this.respuesta_a = "";
@@ -75087,7 +75102,7 @@ var render = function() {
                 domProps: { textContent: _vm._s(examen.nombre_categoria) }
               }),
               _vm._v(" "),
-              _c("td", [_vm._v("1")]),
+              _c("td", { domProps: { textContent: _vm._s(examen.name) } }),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -75287,7 +75302,7 @@ var render = function() {
                 domProps: { textContent: _vm._s(examen.nombre_categoria) }
               }),
               _vm._v(" "),
-              _c("td", [_vm._v("1")]),
+              _c("td", { domProps: { textContent: _vm._s(examen.name) } }),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -75731,36 +75746,165 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col" },
-        _vm._l(_vm.arrayPreguntas, function(pregunta) {
-          return _c("div", { key: pregunta.id }, [
-            _c("h4", { domProps: { textContent: _vm._s(pregunta.pregunta) } }),
-            _vm._v(" "),
-            _c("ul", [
-              _c("li", {
-                domProps: { textContent: _vm._s("A: " + pregunta.a_opt) }
-              }),
-              _vm._v(" "),
-              _c("li", {
-                domProps: { textContent: _vm._s("B: " + pregunta.b_opt) }
-              }),
-              _vm._v(" "),
-              _c("li", {
-                domProps: { textContent: _vm._s("C: " + pregunta.c_opt) }
-              }),
-              _vm._v(" "),
-              _c("li", {
-                domProps: { textContent: _vm._s("D: " + pregunta.d_opt) }
-              })
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s("respuesta: " + pregunta.respuesta)
+        [
+          _vm._l(_vm.arrayPreguntas, function(pregunta) {
+            return _c("div", { key: pregunta.id, staticClass: "mb-4" }, [
+              _c("form", { attrs: { action: "#", method: "post" } }, [
+                _c("h4", {
+                  domProps: { textContent: _vm._s(pregunta.pregunta) }
+                }),
+                _vm._v(" "),
+                _c("p", {
+                  domProps: {
+                    textContent: _vm._s("respuesta: " + pregunta.respuesta)
+                  },
+                  model: {
+                    value: _vm.respuesta_correcta,
+                    callback: function($$v) {
+                      _vm.respuesta_correcta = $$v
+                    },
+                    expression: "respuesta_correcta"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta_usuario,
+                        expression: "respuesta_usuario"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "radio", id: "a" },
+                    domProps: {
+                      value: pregunta.a_opt,
+                      checked: _vm._q(_vm.respuesta_usuario, pregunta.a_opt)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.respuesta_usuario = pregunta.a_opt
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "form-check-label",
+                    attrs: { for: "a" },
+                    domProps: { textContent: _vm._s("A: " + pregunta.a_opt) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta_usuario,
+                        expression: "respuesta_usuario"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "radio", id: "b" },
+                    domProps: {
+                      value: pregunta.b_opt,
+                      checked: _vm._q(_vm.respuesta_usuario, pregunta.b_opt)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.respuesta_usuario = pregunta.b_opt
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "form-check-label",
+                    attrs: { for: "b" },
+                    domProps: { textContent: _vm._s("B: " + pregunta.b_opt) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta_usuario,
+                        expression: "respuesta_usuario"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "radio", id: "c" },
+                    domProps: {
+                      value: pregunta.c_opt,
+                      checked: _vm._q(_vm.respuesta_usuario, pregunta.c_opt)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.respuesta_usuario = pregunta.c_opt
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "form-check-label",
+                    attrs: { for: "c" },
+                    domProps: { textContent: _vm._s("C: " + pregunta.c_opt) }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.respuesta_usuario,
+                        expression: "respuesta_usuario"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "radio", id: "d" },
+                    domProps: {
+                      value: pregunta.d_opt,
+                      checked: _vm._q(_vm.respuesta_usuario, pregunta.d_opt)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.respuesta_usuario = pregunta.d_opt
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "form-check-label",
+                    attrs: { for: "d" },
+                    domProps: { textContent: _vm._s("D: " + pregunta.d_opt) }
+                  })
+                ])
+              ])
+            ])
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.guardarPregunta()
+                }
               }
-            })
-          ])
-        }),
-        0
+            },
+            [_vm._v("Siguiente pregunta")]
+          )
+        ],
+        2
       )
     ])
   ])

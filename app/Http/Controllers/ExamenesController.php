@@ -11,7 +11,8 @@ class ExamenesController extends Controller
     public function listar()
     {
         $examenes = DB::table('examenes')->join('categorias', 'examenes.categoria_id', '=', 'categorias.id')
-                                         ->select('examenes.*', 'categorias.nombre_categoria')
+                                         ->join('users', 'examenes.users_id', '=', 'users.id')
+                                         ->select('examenes.*', 'categorias.nombre_categoria', 'users.name')
                                          ->get();
 
         return ['examenes' => $examenes];
@@ -27,6 +28,7 @@ class ExamenesController extends Controller
     public function crear(Request $request)
     {
         $examen = new Examenes();
+        $examen->users_id = auth()->user()->id;
         $examen->categoria_id = $request->categoria;
         $examen->nombre_examen = $request->nombre_examen;
         $examen->save();

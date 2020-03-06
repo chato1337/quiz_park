@@ -8,16 +8,29 @@
     </div>
     <div class="row">
         <div class="col">
-            <div v-for="pregunta in arrayPreguntas" :key="pregunta.id" class="">
+            <div v-for="pregunta in arrayPreguntas" :key="pregunta.id" class="mb-4">
+              <form class="" action="#" method="post">
                 <h4 v-text="pregunta.pregunta"></h4>
-                <ul>
-                    <li v-text="'A: ' + pregunta.a_opt"></li>
-                    <li v-text="'B: ' + pregunta.b_opt"></li>
-                    <li v-text="'C: ' + pregunta.c_opt"></li>
-                    <li v-text="'D: ' + pregunta.d_opt"></li>
-                </ul>
-                <p v-text="'respuesta: ' + pregunta.respuesta"></p>
+                <p v-model="respuesta_correcta" v-text="'respuesta: ' + pregunta.respuesta"></p>
+                <div class="form-check">
+                  <input v-model="respuesta_usuario" class="form-check-input" type="radio" id="a" :value="pregunta.a_opt">
+                  <label v-text="'A: ' + pregunta.a_opt" class="form-check-label" for="a"></label>
+                </div>
+                <div class="form-check">
+                  <input v-model="respuesta_usuario" class="form-check-input" type="radio" id="b" :value="pregunta.b_opt">
+                  <label v-text="'B: ' + pregunta.b_opt" class="form-check-label" for="b"></label>
+                </div>
+                <div class="form-check">
+                  <input v-model="respuesta_usuario" class="form-check-input" type="radio" id="c" :value="pregunta.c_opt">
+                  <label v-text="'C: ' + pregunta.c_opt" class="form-check-label" for="c"></label>
+                </div>
+                <div class="form-check">
+                  <input v-model="respuesta_usuario" class="form-check-input" type="radio" id="d" :value="pregunta.d_opt">
+                  <label v-text="'D: ' + pregunta.d_opt" class="form-check-label" for="d"></label>
+                </div>
+              </form>
             </div>
+              <button @click="guardarPregunta()" class="btn btn-success" type="button">Siguiente pregunta</button>
         </div>
     </div>
 </div>
@@ -29,6 +42,7 @@ export default {
     props: ['examen'],
     data() {
         return {
+            respuesta_usuario: '',
             categorias: {},
             pregunta: '',
             respuesta_a: '',
@@ -36,7 +50,7 @@ export default {
             respuesta_c: '',
             respuesta_d: '',
             respuesta_correcta: '',
-            arrayPreguntas: []
+            arrayPreguntas: [],
         }
     },
     methods: {
@@ -77,6 +91,9 @@ export default {
             }).catch(function(error) {
                 console.log(error)
             });
+        },
+        guardarPregunta(){
+
         },
         resetear() {
             this.pregunta = "";
